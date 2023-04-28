@@ -213,6 +213,7 @@ static void M_ChooseSkill(int choice);
 static void M_LoadGame(int choice);
 static void M_SaveGame(int choice);
 static void M_Options(int choice);
+static void M_Hub(int choice);
 static void M_EndGame(int choice);
 static void M_ReadThis(int choice);
 static void M_ReadThis2(int choice);
@@ -314,6 +315,7 @@ enum
 menuitem_t InGameMenu[]=
 {
     {1,"M_OPTION",M_Options,'o'},
+    {1,"M_HUB", M_Hub, 'h'},
     // Another hickup with Special edition.
     {1,"M_QUITG",M_QuitDOOM,'q'}
 };
@@ -1490,6 +1492,8 @@ void M_DrawOptions(void)
 		 9 + (crispy->widescreen ? 6 : 3),screenSize); // [crispy] Crispy HUD
 }
 
+
+
 // [crispy] mouse sensitivity menu
 static void M_DrawMouse(void)
 {
@@ -1730,6 +1734,13 @@ static void M_DrawCrispness4(void)
 void M_Options(int choice)
 {
     M_SetupNextMenu(&OptionsDef);
+}
+
+// M_Hub [AP]
+void M_Hub(int choice)
+{
+    // Save current position and return to map select
+    G_DoLoadGame();
 }
 
 // [crispy] correctly handle inverted y-axis
